@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模拟考试 · 法考客观题模拟</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="exam-top">
+  <strong id="paper-name">模拟考试</strong>
+  <span class="timer" id="timer">--:--:--</span>
+  <span class="muted" id="progress"></span>
+  <span style="margin-left:auto;display:flex;gap:8px">
+    <button class="btn ghost" id="btn-pause" style="display:none">暂停</button>
+    <button class="btn danger" id="btn-submit">交卷</button>
+  </span>
+</div>
+<div id="notice" class="card" style="display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:100;border-color:var(--warn)"></div>
+
+<!-- 恢复考试 -->
+<div class="wrap" id="resume-box" style="display:none">
+  <div class="card">
+    <h2>检测到进行中的考试</h2>
+    <p id="resume-info" class="muted"></p>
+    <p>真实考场模式下计时不会因关闭页面而停止。你可以继续作答，或作废本次考试。</p>
+    <button class="btn" id="btn-resume">继续考试</button>
+    <button class="btn ghost" id="btn-void">作废本次考试</button>
+  </div>
+</div>
+
+<!-- 考试须知 -->
+<div class="wrap" id="ready-box">
+  <div class="card">
+    <h2>组卷设置</h2>
+    <p>
+      卷别：<select id="sel-paper"><option value="j1">试卷一</option><option value="j2">试卷二</option></select>
+      　规格：<select id="sel-scale"><option value="full">整卷 100题/180分钟</option><option value="half">半卷 50题/90分钟</option></select>
+      　模式：<select id="sel-mode"><option value="real">真实考场（不可暂停）</option><option value="relax">练习考（可暂停）</option></select>
+    </p>
+    <p class="muted" id="scale-hint"></p>
+  </div>
+  <div class="card">
+    <h2>考试须知</h2>
+    <p>1. 本场考试全程计时，采用<strong>绝对时间</strong>：中途关闭页面、切换程序，计时照常进行，时间到自动交卷。</p>
+    <p>2. 真实考场模式下不可暂停；进入考试将自动全屏，退出全屏会收到提醒。</p>
+    <p>3. 单选题 1 分；多选、不定项 2 分，多选/少选/错选均不得分（与真实评分规则一致）。</p>
+    <p>4. 答题期间不显示对错，交卷后可逐题查看解析，错题自动进入错题本。</p>
+    <p>5. 剩余 30/10/5 分钟时会有提醒；剩余 5 分钟时未作答题目在答题卡中闪烁。</p>
+    <p><label class="chk"><input type="checkbox" id="agree"> 我已阅读并知晓上述规则</label></p>
+    <button class="btn" id="btn-start">开始考试</button>
+    <a class="btn ghost" href="index.html">返回首页</a>
+  </div>
+</div>
+
+<!-- 开考倒计时 -->
+<div class="wrap" id="countdown-box" style="display:none;text-align:center;padding-top:15vh">
+  <div class="muted">考试即将开始</div>
+  <div class="big" id="cd-num" style="font-size:80px">3</div>
+</div>
+
+<!-- 考试主界面 -->
+<div class="exam-body" id="exam-ui" style="display:none">
+  <div class="card" id="q-box"></div>
+  <div class="sheet" id="sheet">
+    <div class="drawer-handle" id="drawer-handle">▲ 答题卡</div>
+    <strong>答题卡</strong>
+    <div class="sheet-grid" id="sheet-grid"></div>
+    <p class="muted" style="font-size:12px">■ 已答 ｜ 黄框 = 标记 ｜ 点击跳题<br>快捷键：A–D/1–4 选择，←→ 翻页，M 标记</p>
+  </div>
+</div>
+
+<!-- 暂停遮罩 -->
+<div id="pause-mask" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);color:#fff;z-index:200;text-align:center;padding-top:30vh;cursor:pointer">
+  <div style="font-size:40px">⏸ 已暂停</div><div>点击任意位置继续</div>
+</div>
+
+<!-- 退出全屏警告 -->
+<div id="fs-warn" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:210">
+  <div class="card" style="max-width:420px;margin:25vh auto">
+    <h2>⚠ 监考提醒</h2>
+    <p>你已退出全屏。真实考场中离开考试界面将被视为违规，请保持专注。</p>
+    <button class="btn" id="fs-warn-back">返回全屏</button>
+    <button class="btn ghost" id="fs-warn-close">忽略</button>
+  </div>
+</div>
+
+<script src="data/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/grader.js"></script>
+<script src="js/paper.js"></script>
+<script src="js/qrender.js"></script>
+<script src="data/bank/_all.js"></script>
+<script src="js/exam.js"></script>
+</body>
+</html>

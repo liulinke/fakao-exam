@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>法考客观题模拟</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site"><h1>⚖ 法考客观题模拟</h1><nav id="nav"></nav></header>
+<div class="wrap">
+  <div class="card">
+    <h2>开始</h2>
+    <p class="btn-group">
+      <a class="btn" href="exam.html?paper=j1">模拟考试 · 试卷一</a>
+      <a class="btn" href="exam.html?paper=j2">模拟考试 · 试卷二</a>
+      <a class="btn secondary" href="practice.html">科目练习</a>
+      <a class="btn secondary" href="review.html" id="btn-review">错题本</a>
+    </p>
+    <p class="muted" id="bank-info"></p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h2>数据概览</h2>
+      <div id="overview"></div>
+    </div>
+    <div class="card">
+      <h2>最近模拟考</h2>
+      <div id="recent"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>说明</h2>
+    <p class="muted">
+      考试结构与真实法考客观题一致：每卷 100 题（单选50×1分 + 多选35×2分 + 不定项15×2分），满分 150，限时 180 分钟，全国合格线为两卷合计 180 分。
+      真实考场模式采用绝对时间计时，不可暂停，到时自动交卷。所有数据保存在本机浏览器，可在「统计」页导出备份。
+    </p>
+  </div>
+</div>
+<footer class="site">题目为 AI 生成的原创模拟题，仅供练习，不代表真题；解析法条以现行有效版本为准。</footer>
+<script src="data/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/grader.js"></script>
+<script src="data/bank/_all.js"></script>
+<script>
+FK.renderNav("index");
+(function () {
+  const $ = id => document.getElementById(id);
+  // 题库信息
+  const counts = FK_BANK_UTIL.countBySubject();
+  const total = FK_BANK_UTIL.total();
+  $("bank-info").textContent = `题库共 ${total} 题 · 覆盖 ${Object.keys(counts).length} 个科目 · 版本 ${FK_CONFIG.version}`;
+  // 错题数
+  const wrongN = Object.keys(FK.wrongAll()).length;
+  if (wrongN) $("btn-review").textContent = `错题本（${wrongN}）`;
+  // 概览
+  const p = FK.store.get("practice", {});
+  let r = 0, n = 0;
+  for (const k in p) { r += p[k].r; n += p[k].r + p[k].w; }
+  const daily = FK.store.get("daily", {});
+  const today = daily[new Date().toISOString().slice(0, 10)] || 0;
+  $("overview").innerHTML = `
+    <p>累计刷题 <strong>${n}</strong> 道 ｜ 平均正确率 <strong>${n ? Math.round(r / n * 100) : "--"}%</strong></p>
+    <p>今日已刷 <strong>${today}</strong> 道 ｜ 错题本 <strong>${wrongN}</strong> 道</p>`;
+  // 最近考试
+  const recs = FK.examRecords();
+  $("recent").innerHTML = recs.length
+    ? recs.slice(-5).reverse().map((rec, i) => {
+        const idx = recs.length - 1 - i;
+        const norm = Math.round(rec.score / rec.max * 150);
+        return `<p><a href="result.html?rec=${idx}">${FK_CONFIG.papers[rec.paperId].name}${rec.scale === "half" ? "·半卷" : ""} — ${rec.score}/${rec.max}（折算约${norm}分）</a> <span class="muted">${new Date(rec.ts).toLocaleDateString()}</span></p>`;
+      }).join("")
+    : '<p class="muted">还没有模拟考记录</p>';
+  // 进行中的考试提示
+  const active = FK.store.get("exam_active", null);
+  if (active) $("overview").insertAdjacentHTML("afterbegin",
+    '<p><span class="tag warn">进行中</span><a href="exam.html">有一场未完成的考试，点击继续（计时未停止）</a></p>');
+})();
+</script>
+</body>
+</html>

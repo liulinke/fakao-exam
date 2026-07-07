@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成绩报告 · 法考客观题模拟</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site"><h1>⚖ 法考客观题模拟</h1><nav id="nav"></nav></header>
+<div class="wrap">
+  <div class="card">
+    <h2>成绩报告</h2>
+    <p class="muted" id="r-title"></p>
+    <div class="big" id="r-score"></div>
+    <p id="r-verdict"></p>
+    <p class="muted" id="r-time"></p>
+    <p><a class="btn" href="exam.html">再考一场</a> <a class="btn ghost" href="review.html">去错题本</a></p>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>分科目得分</h2><div id="r-subjects"></div></div>
+    <div class="card"><h2>分题型得分</h2><div id="r-types"></div>
+      <h2 style="margin-top:18px">做题节奏</h2>
+      <p class="muted" id="r-pace"></p>
+      <table class="list"><thead><tr><th>题号</th><th>科目</th><th>耗时</th><th></th></tr></thead><tbody id="r-slow"></tbody></table>
+    </div>
+  </div>
+  <div class="card">
+    <h2>逐题回看</h2>
+    <label class="chk"><input type="checkbox" id="chk-wrong-only"> 只看错题</label>
+  </div>
+  <div id="r-questions"></div>
+</div>
+<footer class="site">题目为 AI 生成的原创模拟题，仅供练习，不代表真题；解析法条以现行有效版本为准。</footer>
+<script src="data/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/grader.js"></script>
+<script src="js/qrender.js"></script>
+<script src="data/bank/_all.js"></script>
+<script>FK.renderNav("");</script>
+<script src="js/result.js"></script>
+</body>
+</html>

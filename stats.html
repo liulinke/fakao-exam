@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统计分析 · 法考客观题模拟</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site"><h1>⚖ 法考客观题模拟</h1><nav id="nav"></nav></header>
+<div class="wrap">
+  <div class="grid2">
+    <div class="card"><h2>科目正确率雷达</h2><canvas id="radar" class="chart"></canvas></div>
+    <div class="card"><h2>模拟考成绩走势</h2><canvas id="line" class="chart"></canvas><p class="muted" id="line-note"></p></div>
+  </div>
+  <div class="card"><h2>刷题热力（近12周）</h2><div class="heat" id="heat"></div></div>
+  <div class="card"><h2>薄弱章节 TOP10</h2><div id="weak-body"></div></div>
+  <div class="card">
+    <h2>设置与数据</h2>
+    <p>
+      <label class="chk"><input type="checkbox" id="chk-lenient"> 不定项宽松判分（少选按比例给分）</label>
+      <label class="chk"><input type="checkbox" id="chk-exclude"> 组卷排除最近2次考过的题</label>
+      <label class="chk"><input type="checkbox" id="chk-fs"> 真实考场模式自动全屏</label>
+    </p>
+    <p>
+      <button class="btn secondary" id="btn-export">导出全部数据备份</button>
+      <label class="btn ghost" style="display:inline-block">导入备份 <input type="file" id="file-import" accept=".json" style="display:none"></label>
+      <button class="btn ghost" id="btn-report">导出报错题目列表</button>
+    </p>
+    <p class="muted">数据保存在本浏览器 localStorage 中，清理浏览器缓存会丢失，建议定期导出备份。</p>
+  </div>
+</div>
+<footer class="site">题目为 AI 生成的原创模拟题，仅供练习，不代表真题；解析法条以现行有效版本为准。</footer>
+<script src="data/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/grader.js"></script>
+<script src="js/qrender.js"></script>
+<script src="data/bank/_all.js"></script>
+<script>FK.renderNav("stats");</script>
+<script src="js/stats.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>错题本 · 法考客观题模拟</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header class="site"><h1>⚖ 法考客观题模拟</h1><nav id="nav"></nav></header>
+<div class="wrap">
+  <div class="card" id="list-card">
+    <h2>错题本 <span class="muted" id="r-count"></span></h2>
+    <p>科目：<select id="r-subject"><option value="all">全部</option></select>
+       排序：<select id="r-sort"><option value="count">按错误次数</option><option value="time">按最近时间</option><option value="star">加星优先</option></select>
+       <button class="btn" id="btn-redo" style="margin-left:10px">错题重做</button>
+    </p>
+    <table class="list">
+      <thead><tr><th>题目</th><th>错误</th><th>最近</th><th>操作</th></tr></thead>
+      <tbody id="r-body"></tbody>
+    </table>
+  </div>
+
+  <div class="card" id="view-card" style="display:none">
+    <h2>解析 <button class="btn ghost" id="v-close" style="float:right;padding:2px 10px">收起</button></h2>
+    <div id="v-box"></div>
+  </div>
+
+  <div class="card" id="redo-card" style="display:none">
+    <div class="muted" id="redo-progress"></div>
+    <div id="redo-box"></div>
+    <div style="margin-top:14px;display:flex;gap:10px">
+      <button class="btn" id="redo-confirm">确认答案</button>
+      <button class="btn" id="redo-next" style="display:none">下一题 →</button>
+      <button class="btn ghost" id="redo-quit">退出重做</button>
+    </div>
+  </div>
+</div>
+<footer class="site">题目为 AI 生成的原创模拟题，仅供练习，不代表真题；解析法条以现行有效版本为准。</footer>
+<script src="data/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/grader.js"></script>
+<script src="js/qrender.js"></script>
+<script src="data/bank/_all.js"></script>
+<script>FK.renderNav("review");</script>
+<script src="js/review.js"></script>
+</body>
+</html>
