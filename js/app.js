@@ -111,3 +111,10 @@ window.FK = (function () {
   applyTheme();
   return { store, settings, saveSettings, toggleTheme, wrongAll, addWrong, wrongRedoRight, removeWrong, practiceLog, examRecords, pushExamRecord, exportData, importData, shuffle, fmtTime, esc, qs, renderNav };
 })();
+
+// ---- PWA：注册 Service Worker，实现离线可用 + 可安装到主屏幕 ----
+if ("serviceWorker" in navigator && (location.protocol === "http:" || location.protocol === "https:")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
