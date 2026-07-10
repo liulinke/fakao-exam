@@ -100,7 +100,7 @@ window.FK = (function () {
 
   // ---- 页面头部 ----
   function renderNav(active) {
-    const items = [["index", "首页"], ["practice", "练习"], ["review", "错题本"], ["stats", "统计"]];
+    const items = [["index", "首页"], ["practice", "练习"], ["review", "错题本"], ["stats", "统计"], ["guide", "备考指南"]];
     const nav = document.getElementById("nav");
     if (!nav) return;
     nav.innerHTML = items.map(([id, label]) =>

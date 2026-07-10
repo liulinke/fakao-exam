@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>成绩报告 · 法考客观题模拟</title>
+<title>成绩报告 - 法考模拟考试结果与逐题解析</title>
+<meta name="description" content="查看本次法考模拟考试的总分、折算分数、分科目/分题型得分率、做题耗时分析及逐题解析回看，支持一键生成成绩分享卡片。">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://www.liulinke.com/p/fakaomoni/result.html">
 <link rel="stylesheet" href="css/main.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1a5fb4">
@@ -21,7 +24,11 @@
     <div class="big" id="r-score"></div>
     <p id="r-verdict"></p>
     <p class="muted" id="r-time"></p>
-    <p><a class="btn" href="exam.html">再考一场</a> <a class="btn ghost" href="review.html">去错题本</a></p>
+    <p><a class="btn" href="exam.html">再考一场</a> <a class="btn ghost" href="review.html">去错题本</a> <button class="btn secondary" id="btn-share" style="margin-left:10px">生成分享卡片</button></p>
+  </div>
+  <div class="card" id="share-card" style="display:none;text-align:center">
+    <h2>分享你的成绩</h2>
+    <div id="share-canvas"></div>
   </div>
   <div class="grid2">
     <div class="card"><h2>分科目得分</h2><div id="r-subjects"></div></div>
@@ -45,6 +52,8 @@
 <script src="js/qrender.js"></script>
 <script src="data/bank/_all.js"></script>
 <script>FK.renderNav("");</script>
+<script src="js/vendor/qrcode.js"></script>
+<script src="js/share.js"></script>
 <script src="js/result.js"></script>
 </body>
 </html>

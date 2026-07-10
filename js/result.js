@@ -59,4 +59,15 @@
   }
   $("chk-wrong-only").onchange = e => { filterWrong = e.target.checked; renderAll(); };
   renderAll();
+
+  // ---- 分享卡片 ----
+  $("btn-share").onclick = () => {
+    const card = $("share-card");
+    const canvas = $("share-canvas");
+    card.style.display = "block";
+    // 渲染分享卡片（使用 FK_SHARE 模块）
+    FK_SHARE.render(canvas, rec);
+    // 平滑滚动到卡片位置
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
 })();

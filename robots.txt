@@ -1,0 +1,11 @@
+# robots.txt for https://www.liulinke.com/p/fakaomoni/
+# 注意：本文件部署在子路径 /p/fakaomoni/ 下，搜索引擎会读取站点根目录的 robots.txt。
+# 请将以下内容合并到站点根目录的 robots.txt 文件中：
+#
+# User-agent: *
+# Allow: /p/fakaomoni/
+# Sitemap: https://www.liulinke.com/p/fakaomoni/sitemap.xml
+
+User-agent: *
+Allow: /
+Sitemap: https://www.liulinke.com/p/fakaomoni/sitemap.xml

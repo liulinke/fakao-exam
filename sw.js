@@ -1,5 +1,5 @@
 // Service Worker：离线缓存（新增题库/脚本后记得把版本号 +1，触发缓存更新）
-const CACHE_VERSION = "fk-v2";
+const CACHE_VERSION = "fk-v3";
 
 // 需要预缓存的静态资源（相对当前 sw.js 所在目录，兼容部署在子路径下的情况）
 const PRECACHE_URLS = [
@@ -10,6 +10,7 @@ const PRECACHE_URLS = [
   "./result.html",
   "./review.html",
   "./stats.html",
+  "./guide.html",
   "./manifest.json",
   "./css/main.css",
   "./js/app.js",
@@ -21,7 +22,9 @@ const PRECACHE_URLS = [
   "./js/qrender.js",
   "./js/result.js",
   "./js/review.js",
+  "./js/share.js",
   "./js/stats.js",
+  "./js/vendor/qrcode.js",
   "./data/config.js",
   "./data/bank/_all.js",
   "./data/bank/falixue.js",
