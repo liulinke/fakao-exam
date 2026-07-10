@@ -3,8 +3,8 @@
   var files = ["xingfa", "xingsu", "xingzheng", "falixue", "xianfa", "guojifa", "sifazhidu", "falvshi",
     "minfa", "minsu", "shangfa", "jingjifa", "zhishichanquan", "guojisifa", "guojijingjifa", "huanjing", "laodong"];
   files.forEach(function (f) {
-    document.write('<script src="data/bank_hard/' + f + '.js"><\/script>');
+    document.write('<script src="data/bank/' + f + '.js"><\/script>');
   });
   // 加载补充题目（追加到已有科目中）
-  document.write('<script src="data/bank_hard/_extra.js"><\/script>');
+  document.write('<script src="data/bank/_extra.js"><\/script>');
 })();
